@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Atmosphere } from "@/components/Atmosphere";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Work } from "@/components/Work";
@@ -14,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Aditya Shah — Computer Science engineer building AI-powered developer tools, full-stack systems, and quietly elegant interfaces.",
+          "Portfolio of Aditya Shah — Computer Science engineer building AI-powered developer tools and intelligent interfaces, in a voxel world.",
       },
       { property: "og:title", content: "Aditya Shah — AI Engineer & Product Developer" },
       {
@@ -29,14 +28,15 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative min-h-screen bg-atmosphere">
-      <Atmosphere />
+    <main className="relative min-h-screen bg-vignette">
       <Nav />
       <Hero />
-      <Work />
-      <About />
-      <Skills />
-      <Contact />
+      <div className="relative bg-pixel-grid">
+        <Work />
+        <About />
+        <Skills />
+        <Contact />
+      </div>
     </main>
   );
 }
