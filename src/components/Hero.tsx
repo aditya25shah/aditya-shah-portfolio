@@ -8,7 +8,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
-  const ease = [0.22, 1, 0.36, 1];
+  const ease = [0.22, 1, 0.36, 1] as const;
 
   return (
     <section ref={ref} className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-24">
