@@ -8,6 +8,7 @@ const projects = [
     tags: ["React", "TypeScript", "GitHub API", "Gemini"],
     role: "Full-stack · AI",
     year: "2025",
+    color: "bg-bronze",
   },
   {
     n: "02",
@@ -16,6 +17,7 @@ const projects = [
     tags: ["APIs", "Automation", "CI/CD"],
     role: "Systems",
     year: "2025",
+    color: "bg-slate-block",
   },
   {
     n: "03",
@@ -24,6 +26,7 @@ const projects = [
     tags: ["Web", "Geo", "APIs"],
     role: "Product · Engineering",
     year: "2024",
+    color: "bg-stone-light",
   },
   {
     n: "04",
@@ -32,6 +35,7 @@ const projects = [
     tags: ["Python", "Speech", "Automation"],
     role: "AI · Tooling",
     year: "2024",
+    color: "bg-parchment",
   },
 ];
 
@@ -40,28 +44,28 @@ export function Work() {
     <section id="work" className="relative z-10 py-32">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mb-20 flex items-end justify-between gap-8"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 flex items-end justify-between gap-8"
         >
           <div>
-            <div className="mb-4 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-              Selected Work — 2024 / 2025
+            <div className="mb-4 text-pixel text-[10px] tracking-[0.25em] text-bronze">
+              ▣ Selected Work
             </div>
-            <h2 className="text-display text-balance text-[clamp(2.5rem,6vw,5rem)]">
-              Case studies in <span className="italic metal-gradient">craft</span>.
+            <h2 className="text-pixel text-balance text-[clamp(1.5rem,4vw,2.6rem)] leading-[1.3] text-parchment">
+              Case studies <br />in craft.
             </h2>
           </div>
-          <div className="hidden text-right text-sm text-muted-foreground md:block">
-            04 / projects
+          <div className="hidden text-pixel text-[10px] text-muted-foreground md:block">
+            04 / 04
           </div>
         </motion.div>
 
-        <div className="space-y-px overflow-hidden rounded-2xl border border-hairline">
+        <div className="grid gap-6 md:grid-cols-2">
           {projects.map((p, i) => (
-            <ProjectRow key={p.n} project={p} index={i} />
+            <ProjectCard key={p.n} project={p} index={i} />
           ))}
         </div>
       </div>
@@ -69,43 +73,44 @@ export function Work() {
   );
 }
 
-function ProjectRow({ project, index }: { project: typeof projects[number]; index: number }) {
+function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: index * 0.06 }}
-      className="group relative grid grid-cols-12 gap-6 bg-surface/40 p-8 backdrop-blur-sm transition-colors hover:bg-surface-elevated/60 md:p-10"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.06 }}
+      className="group relative border border-hairline bg-stone-dark/60 p-7 shadow-block backdrop-blur-sm transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-block-hover"
     >
-      <div className="col-span-12 flex items-center gap-6 md:col-span-1">
-        <span className="font-mono text-xs text-muted-foreground">{project.n}</span>
+      {/* corner block */}
+      <div className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center bg-stone-dark shadow-block-sm">
+        <span className={`block h-3 w-3 ${project.color}`} />
       </div>
 
-      <div className="col-span-12 md:col-span-5">
-        <h3 className="text-display text-3xl text-foreground md:text-4xl">{project.title}</h3>
-        <div className="mt-2 text-xs text-muted-foreground">
-          {project.role} · {project.year}
-        </div>
+      <div className="mb-4 flex items-baseline justify-between text-pixel text-[10px] text-muted-foreground">
+        <span>{project.n}</span>
+        <span>{project.year}</span>
       </div>
 
-      <p className="col-span-12 text-base leading-relaxed text-muted-foreground md:col-span-4">
+      <h3 className="text-pixel text-lg leading-snug text-parchment">{project.title}</h3>
+      <div className="mt-2 font-mono text-xs uppercase tracking-wider text-bronze">
+        {project.role}
+      </div>
+
+      <p className="mt-5 font-mono text-sm leading-relaxed text-foreground/75">
         {project.blurb}
       </p>
 
-      <div className="col-span-12 flex flex-wrap items-start justify-end gap-1.5 md:col-span-2">
+      <div className="mt-6 flex flex-wrap gap-1.5">
         {project.tags.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-hairline px-2.5 py-1 text-[10px] uppercase tracking-wider text-muted-foreground"
+            className="border border-hairline bg-stone/40 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-foreground/70"
           >
             {t}
           </span>
         ))}
       </div>
-
-      {/* Hover line */}
-      <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-foreground/40 to-transparent transition-all duration-700 group-hover:w-full" />
     </motion.article>
   );
 }

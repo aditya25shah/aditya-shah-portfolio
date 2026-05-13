@@ -19,30 +19,36 @@ export function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mb-16"
+          transition={{ duration: 0.6 }}
+          className="mb-14"
         >
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">Toolkit</div>
-          <h2 className="mt-4 text-display text-balance text-[clamp(2rem,5vw,4rem)]">
-            A practical <span className="italic metal-gradient">stack</span>, used with intent.
+          <div className="text-pixel text-[10px] tracking-[0.25em] text-bronze">▣ Toolkit</div>
+          <h2 className="mt-4 text-pixel text-balance text-[clamp(1.4rem,3.5vw,2.4rem)] leading-snug text-parchment">
+            A practical stack, <br />used with intent.
           </h2>
         </motion.div>
 
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {groups.map((g, i) => (
             <motion.div
               key={g.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-              className="bg-surface/60 p-8 backdrop-blur-sm"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="border border-hairline bg-stone-dark/60 p-6 shadow-block backdrop-blur-sm"
             >
-              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{g.label}</div>
-              <ul className="mt-6 space-y-3">
+              <div className="flex items-center gap-3">
+                <span className="block h-3 w-3 bg-bronze" />
+                <span className="text-pixel text-[10px] tracking-[0.2em] text-parchment">{g.label}</span>
+              </div>
+              <ul className="mt-6 space-y-2.5">
                 {g.items.map((it) => (
-                  <li key={it} className="flex items-center gap-3 text-sm text-foreground/85">
-                    <span className="h-px w-4 bg-foreground/30" />
+                  <li
+                    key={it}
+                    className="flex items-center gap-3 border border-transparent bg-stone/30 px-3 py-2 font-mono text-sm text-foreground/85 transition-colors hover:border-hairline hover:bg-stone/60"
+                  >
+                    <span className="block h-1.5 w-1.5 bg-stone-light" />
                     {it}
                   </li>
                 ))}
@@ -52,7 +58,7 @@ export function Skills() {
         </div>
 
         <div className="mt-24">
-          <div className="mb-10 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">Recognition</div>
+          <div className="mb-8 text-pixel text-[10px] tracking-[0.25em] text-bronze">▣ Recognition</div>
           <div className="space-y-4">
             {achievements.map((a, i) => (
               <motion.div
@@ -60,13 +66,13 @@ export function Skills() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-                className="group flex items-baseline gap-6 border-t border-hairline pt-5"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex items-baseline gap-6 border border-hairline bg-stone-dark/50 p-5 shadow-block-sm"
               >
-                <span className="font-mono text-xs text-muted-foreground">{a.year}</span>
+                <span className="text-pixel text-[11px] text-bronze">{a.year}</span>
                 <div className="flex-1">
-                  <div className="text-lg text-foreground">{a.title}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{a.note}</div>
+                  <div className="font-mono text-base text-parchment">{a.title}</div>
+                  <div className="mt-1 font-mono text-xs text-muted-foreground">{a.note}</div>
                 </div>
               </motion.div>
             ))}
