@@ -9,15 +9,33 @@ export function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: 0.6 }}
             className="md:col-span-4"
           >
-            <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-              About
+            <div className="text-pixel text-[10px] tracking-[0.25em] text-bronze">▣ About</div>
+            <div className="mt-6 inline-flex items-center gap-2 border border-hairline bg-stone-dark/60 px-3 py-2 text-pixel text-[9px] text-parchment">
+              <span className="block h-2 w-2 bg-bronze" />
+              CGPA 8.71 · PES Mandya
             </div>
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-hairline px-3 py-1.5 text-xs text-muted-foreground">
-              <span className="h-1 w-1 rounded-full bg-accent-glow" />
-              CGPA 8.71 · PES, Mandya
+
+            {/* Mini pixel avatar block */}
+            <div className="mt-10 grid w-fit grid-cols-6 gap-px border border-hairline bg-stone-dark p-2 shadow-block">
+              {/* 6x6 abstract pixel portrait */}
+              {[
+                "S","S","P","P","S","S",
+                "S","P","P","P","P","S",
+                "P","P","B","B","P","P",
+                "P","P","B","B","P","P",
+                "S","P","L","L","P","S",
+                "S","S","P","P","S","S",
+              ].map((c, i) => (
+                <span
+                  key={i}
+                  className={`h-3 w-3 ${
+                    c === "S" ? "bg-stone" : c === "P" ? "bg-parchment" : c === "B" ? "bg-stone-dark" : "bg-bronze"
+                  }`}
+                />
+              ))}
             </div>
           </motion.div>
 
@@ -25,25 +43,26 @@ export function About() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="md:col-span-8"
           >
-            <p className="text-display text-balance text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.1] text-foreground/95">
+            <p className="text-balance font-mono text-[clamp(1.05rem,1.8vw,1.5rem)] leading-relaxed text-parchment/95">
               I design and engineer the kind of software I'd want to use —
-              <span className="italic text-muted-foreground"> calm, considered, and deeply intelligent.</span>
-              Currently focused on developer tools, AI systems, and the quiet
-              interfaces that sit between them.
+              <span className="text-muted-foreground"> calm, considered, and quietly intelligent.</span>
+              {" "}Currently focused on developer tools, AI systems, and the interfaces between them.
             </p>
 
-            <div className="mt-14 grid gap-10 sm:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
               {[
                 { k: "2000+", v: "teams beaten at BUILDVERSE national hackathon" },
-                { k: "4", v: "shipped products spanning AI, automation & civic tech" },
+                { k: "04", v: "shipped products in AI, automation & civic tech" },
                 { k: "2028", v: "graduating B.E. CSE, P.E.S College of Engineering" },
               ].map((s) => (
-                <div key={s.k} className="border-t border-hairline pt-5">
-                  <div className="text-display text-3xl text-foreground">{s.k}</div>
-                  <div className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.v}</div>
+                <div key={s.k} className="border border-hairline bg-stone-dark/50 p-5 shadow-block-sm">
+                  <div className="text-pixel text-2xl text-parchment">{s.k}</div>
+                  <div className="mt-3 font-mono text-xs leading-relaxed text-muted-foreground">
+                    {s.v}
+                  </div>
                 </div>
               ))}
             </div>
